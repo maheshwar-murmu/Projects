@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGNIFIYA</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1d1d1d;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 60px;
+            margin-top: 100px;
+            color: aqua;
+            font-weight: bold;
+            text-shadow: 0 0 5px aqua, 0 0 10px aqua;
+        }
+
+        .events-list {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .event-card {
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            box-shadow: 0 10px 20px darkgray;
+            text-align: center;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            opacity: 1;
+        }
+
+        .event-card h3 {
+            font-size: 24px;
+            color: #ff9800;
+        }
+
+        .event-card p {
+            font-size: 16px;
+            color: #ccc;
+        }
+
+        .register-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .register-btn:hover {
+            background: #45a049;
+        }
+
+        .register-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: black;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px lightsteelblue;
+            width: 400px;
+            z-index: 1000;
+        }
+
+        .register-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            color: white;
+            background: #333;
+        }
+
+        .register-form button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .register-form button:hover {
+            background: #45a049;
+        }
+
+        .close-btn {
+            background: red;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .close-btn:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+<body>
+
+<h1>SIGNIFIYA</h1>
+
+<div class="events-list">
+    <div class="event-card">
+        <h3>Coding Premier League</h3>
+        <p>Venue: 2103 & 2104</p>
+        <p>Time: 01:00 PM - 06:00 PM</p>
+        <button class="register-btn" onclick="showRegistrationForm('Coding Premier League')">Register</button>
+    </div>
+
+    <div class="event-card">
+        <h3>Tug Of War</h3>
+        <p>Venue: CCD Ground</p>
+        <p>Time: 03:00 PM - 06:00 PM</p>
+        <button class="register-btn" onclick="showRegistrationForm('Tug Of War')">Register</button>
+    </div>
+
+    <div class="event-card">
+        <h3>Valorant</h3>
+        <p>Venue: Convention Hall</p>
+        <p>Time: 10:00 AM - 07:00 PM</p>
+        <button class="register-btn" onclick="showRegistrationForm('Valorant')">Register</button>
+    </div>
+
+    <div class="event-card">
+        <h3>Treasure Hunt</h3>
+        <p>Venue: Entire College</p>
+        <p>Time: 01:00 PM - 04:00 PM</p>
+        <button class="register-btn" onclick="showRegistrationForm('Treasure Hunt')">Register</button>
+    </div>
+
+    <div class="event-card">
+        <h3>BGMI</h3>
+        <p>Venue: Convention Hall</p>
+        <p>Time: 10:00 AM - 03:00 PM</p>
+        <button class="register-btn" onclick="showRegistrationForm('BGMI')">Register</button>
+    </div>
+</div>
+
+<div id="registration-form" class="register-form">
+    <form action="/send" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="college" placeholder="Your College" required>
+        <input type="hidden" name="event" id="event-name">
+        <button type="submit">Submit</button>
+    </form>
+    <button class="close-btn" onclick="closeForm()">Close</button>
+</div>
+
+<div style="text-align: center; margin-top: 30px;">
+    <a href="/display" style="color: #ff9800; font-size: 18px; text-decoration: none;">View and Edit Event Data</a>
+</div>
+
+<script>
+    function showRegistrationForm(event) {
+        document.getElementById('event-name').value = event;
+        document.getElementById('registration-form').style.display = 'block';
+    }
+
+    function closeForm() {
+        document.getElementById('registration-form').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrations</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1d1d1d;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            width: 80%;
+            margin: 50px auto;
+            border-collapse: collapse;
+            background: #333;
+            border-radius: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #444;
+        }
+
+        tr:nth-child(even) {
+            background-color: #555;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            margin-top: 50px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .action-buttons a,
+        .action-buttons button {
+            background-color: #ff9800;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .action-buttons a:hover,
+        .action-buttons button:hover {
+            background-color: #e68900;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Registered Participants</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>College</th>
+        <th>Event</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each data}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.college}}</td>
+            <td>{{this.event}}</td>
+            <td class="action-buttons">
+
+                <a href="/edit/{{this._id}}">Edit</a>
+
+                <form action="/delete/{{this._id}}" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+
+<script>
+
+    document.querySelectorAll('form').forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            const confirmDelete = confirm("Are you sure you want to delete this participant?");
+            if (!confirmDelete) {
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
