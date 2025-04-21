@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
-const Register = require('./models/register');  // Correct path
+const Register = require('./models/register');  
 
 const app = express();
 const port = process.env.PORT || 5000;
