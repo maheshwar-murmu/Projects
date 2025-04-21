@@ -33,14 +33,14 @@ app.get('/display', async (req, res) => {
 
 app.get('/admin', async (req, res) => {
     const data = await Register.find();
-    res.render('display', { data, isAdmin: true }); // Pass a flag to identify admin view
+    res.render('display', { data, isAdmin: true }); 
 });
 
 
 app.post('/delete/:id', async (req, res) => {
     try {
         await Register.findByIdAndDelete(req.params.id);
-        res.redirect('/admin');  // Redirect back to admin page
+        res.redirect('/admin');  
     } catch (err) {
         console.log(`Error: ${err}`);
         res.status(500).send('Error deleting record');
@@ -58,7 +58,7 @@ app.post('/update/:id', async (req, res) => {
     const { name, email, college, event } = req.body;
     try {
         await Register.findByIdAndUpdate(req.params.id, { name, email, college, event });
-        res.redirect('/admin');  // Redirect back to admin page
+        res.redirect('/admin');  
     } catch (err) {
         console.log(`Error: ${err}`);
         res.status(500).send('Error updating record');
